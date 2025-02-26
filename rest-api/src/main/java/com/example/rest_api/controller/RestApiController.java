@@ -1,12 +1,15 @@
 package com.example.rest_api.controller;
 
 import com.example.rest_api.model.BookQueryParam;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class RestApiController {
@@ -74,6 +77,13 @@ public class RestApiController {
             result = num1 * num2;
             System.out.println("Multiplication : " + result);
         }
+    }
+
+
+    // DELETE
+    @DeleteMapping(path = {"/user/{userName}/delete", "/user/{userName}/del"})
+    public void delete(@PathVariable String userName) {
+        log.info("user-name: {}", userName);
     }
 
 }
