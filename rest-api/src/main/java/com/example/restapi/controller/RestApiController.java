@@ -16,13 +16,19 @@ public class RestApiController {
         return html;
     }
 
-    @GetMapping("/echo/{message}")
-    public String echo(@PathVariable(name = "message") String msg){
+    @GetMapping("/echo/{message}/{bool}/{n}")
+    public String echo(@PathVariable(name = "message") String msg, @PathVariable(name = "bool") boolean tf, @PathVariable(name = "n") int paramNum){
         System.out.println("echo message : " + msg);
 
         // TODO 대문자로 변경해서 RETURN
         msg = msg.toUpperCase();
 
-        return msg;
+        // String 타입의 변수 외에 다른 타입 받아보기
+        String boolMsg = Boolean.toString(tf);
+
+        // boolean, integer
+        String intMsg = Integer.toString(paramNum);
+
+        return msg + " " + boolMsg + " " + intMsg;
     }
 }
