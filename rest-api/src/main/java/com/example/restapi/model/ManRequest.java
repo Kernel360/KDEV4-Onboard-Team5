@@ -14,4 +14,5 @@ public class ManRequest {
     private String name;
     private String phoneNum;
     private String email;
+    private Boolean isKorean;
 }
