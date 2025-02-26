@@ -9,10 +9,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ManRequest {
     private String name;
     private String phoneNum;
     private String email;
     private Boolean isKorean;
+
+    @Override
+    public String toString() {
+        return "ManRequest{" +
+                "name='" + name + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", email='" + email + '\'' +
+                ", isKorean=" + isKorean +
+                '}';
+    }
 }
