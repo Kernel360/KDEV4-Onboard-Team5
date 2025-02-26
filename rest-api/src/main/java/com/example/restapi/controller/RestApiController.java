@@ -1,23 +1,21 @@
 package com.example.restapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.restapi.model.BookQueryParam;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class RestApiController {
 
     @GetMapping(path = "/hello")
-    public String hello(){
+    public String hello() {
         var html = "<html> <body> <h1> Hello Spring Boot </h1> </body> </html>";
 
         return html;
     }
 
-    @GetMapping("/echo/{message}/{bool}/{n}")
-    public String echo(@PathVariable(name = "message") String msg, @PathVariable(name = "bool") boolean tf, @PathVariable(name = "n") int paramNum){
+    @GetMapping("/echo/{message}/is-man/{isMan}/age/{age}")
+    public String echo(@PathVariable(name = "message") String msg, @PathVariable(name = "isMan") boolean tf, @PathVariable(name = "age") int paramNum) {
         System.out.println("echo message : " + msg);
 
         // TODO 대문자로 변경해서 RETURN
@@ -31,4 +29,25 @@ public class RestApiController {
 
         return msg + " " + boolMsg + " " + intMsg;
     }
+
+    //http://localhost:8080/api/book?category=IT&issuedYear=2023&issued-month=01&issued_day=31
+    @GetMapping(path = "/book")
+    public void queryParam(@RequestParam String category, @RequestParam String issuedYear, @RequestParam(name = "issued-month") String issuedMonth, @RequestParam(name = "issued_day") String issuedDay) {
+        System.out.println("category = " + category);
+        System.out.println("issuedYear = " + issuedYear);
+        System.out.println("issuedMonth = " + issuedMonth);
+        System.out.println("issued_day = " + issuedDay);
+    }
+
+    @GetMapping(path = "/book2")
+    public void queryParamDto(BookQueryParam bookQueryParam) {
+        System.out.println("bookQueryParam = " + bookQueryParam);
+    }
+
+    // TODO Parameter 2가지 받습니다. int 형태로 받아서 두 수의 덧셉, 곱셈
+    @GetMapping(path="/calc")
+    public String calcQueryParam(@RequestParam int num1, @RequestParam int num2, @RequestParam boolean isMul) {
+        return isMul?Integer.toString(num1*num2):Integer.toString(num1+num2);
+    }
+
 }
