@@ -1,0 +1,32 @@
+package com.sh.exception.exception;
+
+
+import com.sh.exception.model.Api;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@Slf4j
+@RestControllerAdvice
+@Order(value = Integer.MAX_VALUE) //가장 마지막으로 실행 - default
+public class GlobalExceptionHandler {
+
+
+    //예상하지 못한 모든 예외 처리
+    @ExceptionHandler(value = {Exception.class})
+    public ResponseEntity<Api> exception(
+            Exception e
+    ){
+        log.error("",e);
+
+        var response = Api.builder()
+                .resultCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()))
+                .resultMessage(HttpStatus.IM_USED.getReasonPhrase())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+}
