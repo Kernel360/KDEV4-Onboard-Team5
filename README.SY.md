@@ -26,6 +26,7 @@
   - [예제](#예제)
 - [Validation 사용 이유](#validation-사용-이유)
   - [Validation 종류](#validation-종류)
+- [DataBase](#database)
 
 <br/>
 <br/>
@@ -413,3 +414,16 @@ bookCommentLikeRepository.save(BookCommentLike.builder()
 - `@PastOrPresent` 오늘이거나 과거 날짜
 - `@Future` 미래 날짜
 - `@FutureOrPresent` 오늘이거나 미래 날짜
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+# DataBase
+
+![alt text](image.png)
+
+- 데이터의 저장소
+- DBMS (DataBase Management System) : 데이터베이스를 운영하고 관리하는 소프트웨어
